@@ -27,7 +27,7 @@ Required software：fastqc and multiqc. you can install them using Conda.
 ```bash
 fastqc -t 4 -o data/raw_fastqc/ -f fastq data/raw_data/*.fastq.gz
 multiqc data/raw_fastqc/ -o data/raw_multiqc/
-```bash
+```
 ### 2. Read trimming and filtering
 This step removes adapter sequences and low-quality bases from raw RNA-seq reads.
 
@@ -37,7 +37,7 @@ trim_galore --paired --cores 4 \
   data/raw_data/sample1_R1.fastq.gz \
   data/raw_data/sample1_R2.fastq.gz \
   -o data/trimmed_fastq/
-```bash
+```
 ### 3. Read alignmentt
 This step maps trimmed reads to a reference genome to determine the origin of each read.
 
@@ -50,15 +50,14 @@ bowtie2 \
     -1 data/trimmed_fastq/sample1_R1.fastq.gz \
     -2 data/trimmed_fastq/sample1_R2.fastq.gz \
     -S data/alignment/sam/sample1.sam &> data/alignment/sam/bowtie2_summary/sample1.txt
-```bash
-Convert SAM files to BAM files and sort.
-```bash
+#Convert SAM files to BAM files and sort.
+
     samtools view -bS -F 0x04 data/alignment/sam/sample1.sam -o data/alignment/bam/sample1.bam  
     # Sort BAM file
     samtools sort data/alignment/bam/sample1.bam -o data/alignment/bam/sample1.sort.bam
     # build index
     samtools index data/alignment/bam/sample1.sort.bam
-```bash
+```
 
 ### 4. Gene quantification
 This step counts how many reads map to each gene.
@@ -67,7 +66,7 @@ Required software：subread.
 featureCounts -T 4 -p -a reference_dir/Mus_musculus.GRCm39.114.chr.gtf -g exon_id -f \
 	-o data/counts/read_counts.txt \
 	data/alignment/bam/sample1.sort.bam
-```bash
+```
 ### 5. Downstream functional analysis and visualization
 This step interprets differential expression results and visualizes patterns in the data, including pathway enrichment, clustering, and principal component analysis.
 ## ⚠️ Reminders
