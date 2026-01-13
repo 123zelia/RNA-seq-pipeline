@@ -38,7 +38,7 @@ trim_galore --paired --cores 4 \
   data/raw_data/sample1_R2.fastq.gz \
   -o data/trimmed_fastq/
 ```
-### 3. Read alignmentt
+### 3. Read alignment
 This step maps trimmed reads to a reference genome to determine the origin of each read.
 
 Required software：bowtie2 and samtools.
