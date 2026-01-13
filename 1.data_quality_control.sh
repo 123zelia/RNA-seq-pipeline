@@ -24,8 +24,3 @@ echo "start running MultiQC..."
 # step2. use multiqc to merge fastqc results
 multiqc ${fastqc_dir}/ -o ${multiqc_dir}/
 
-
-# Parameter Description:
-# fastqc [-o output dir] [--(no)extract] [-f fastq|bam|sam] [-c contaminant file] seqfile1 .. seqfileN
-# -o: output dir to save results
-# -t: threads number
